@@ -2,8 +2,9 @@
 import LetterGlitch from "../React/LetterGlitch.tsx";
 import LogoWall from "../components/logoWall.astro";
 import SkillsList from "../React/SkillsList.tsx";
+import ScrollLinked from "@/React/ScrollLinked";
 ---
-
+<ScrollLinked client:load />
 <section class="text-[var(--white)] mt-12 md:mt-0" id="home">
   <div class="max-w-5xl mx-auto space-y-8 md:py-36 pb-14">
     <div class="text-left space-y-4">
@@ -93,7 +94,7 @@ import SkillsList from "../React/SkillsList.tsx";
       >
         <LetterGlitch
           client:load
-          glitchColors={["#5e4491", "#A476FF", "#241a38"]}
+          glitchColors={["#115588", "#FFFFFF", "#222222"]}
           glitchSpeed={33}
           centerVignette={false}
           outerVignette={true}

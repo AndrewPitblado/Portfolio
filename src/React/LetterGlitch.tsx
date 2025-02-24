@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 
 const LetterGlitch = ({
-  glitchColors = ["#5e4491", "#A476FF", "#241a38"],
+  glitchColors = ["#1111FF", "#FFFFFF", "#222222"],
   glitchSpeed = 33,
   centerVignette = false,
   outerVignette = false,
@@ -121,7 +121,7 @@ const LetterGlitch = ({
   const interpolateColor = (
     start: { r: number; g: number; b: number },
     end: { r: number; g: number; b: number },
-    factor: number,
+    factor: number
   ) => {
     const result = {
       r: Math.round(start.r + (end.r - start.r) * factor),
@@ -222,7 +222,7 @@ const LetterGlitch = ({
           letter.color = interpolateColor(
             startRgb,
             endRgb,
-            letter.colorProgress,
+            letter.colorProgress
           );
           needsRedraw = true;
         }
