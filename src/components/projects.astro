@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import svgl from "../../public/svgl.png";
 import stockin from "../../public/stockin.png";
+import humourhub from "../../public/humourhub.png";
+import logogame from "../../public/logogame.png";
 
 interface Project {
   title: string;
@@ -9,22 +11,25 @@ interface Project {
   link: string;
   preview: string;
   status: string;
+  description?: string;
 }
 
 const projects: Project[] = [
   {
-    title: "StockIn",
-    image: stockin as ImageMetadata,
-    link: "https://github.com/gothsec/stockin-demo",
+    title: "HumourHub",
+    image: humourhub as ImageMetadata,
+    link: "https://github.com/AndrewPitblado/HumourHub",
     preview: "https://stockin-demo.vercel.app",
-    status: "In Development",
+    status: "Deployed",
+    description: "An iOS app showing many different jokes of various categories to the user. Made with SwiftUI and Swift.",
   },
   {
-    title: "Svgl.app",
-    image: svgl as ImageMetadata,
-    link: "https://github.com/pheralb/svgl",
+    title: "Logo-Game",
+    image: logogame as ImageMetadata,
+    link: "https://github.com/AndrewPitblado/logo-game",
     preview: "https://svgl.app",
-    status: "Contributor",
+    status: "Deployed",
+    description: "A simple game where the user tries to guess the company name based on the logos. Built with React, styled with Tailwind CSS, and delpoyed with vercel.",
   },
 ];
 ---
@@ -40,20 +45,27 @@ const projects: Project[] = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
         projects.map((project) => (
-          <div class="group">
+          <div class="group relative">
+            <div class="relative mb-4">
             <a
               href={project.preview}
               target="_blank"
               rel="noopener noreferrer"
               class="block"
             >
-              <div class="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
+              <div class="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4 bg-[#1414149c]">
                 <Image
                   src={project.image}
                   alt={project.title}
-                  class="w-full h-48 md:h-72 object-cover group-hover:scale-105 transition-transform duration-300"
+                  class="w-full h-48 md:h-72 object-contain group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
+              <div class="absolute inset-0 bg-black/80 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
+            <p class="text-white text-center">{project.description}</p>
+          </div>
+        </div>
+        
+      
               <div class="flex items-center px-3">
                 <div class="flex-grow">
                   <h4 class="text-2xl font-semibold">{project.title}</h4>
@@ -101,7 +113,7 @@ const projects: Project[] = [
     </div>
     <a
       target="_blank"
-      href="https://github.com/Gothsec?tab=repositories"
+      href="https://github.com/AndrewPitblado?tab=repositories"
       aria-label="GitHub"
       class="w-full flex items-center justify-center gap-2 mt-9 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-full bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
     >
