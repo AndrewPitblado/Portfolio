@@ -24,22 +24,22 @@ const navItems: NavItem[] = [
 ];
 ---
 
-<div class="flex justify-center w-full">
+<div class="flex w-full justify-center">
   <nav
-    class="fixed flex left-0 right-0 z-[100] bg-[#1414149c] border border-1 border-[var(--white-icon-tr)] backdrop-blur-xl transition-all md:top-0 md:bottom-auto bottom-0 md:w-[33rem] rounded-t-2xl md:rounded-full md:mt-6 md:justify-self-center"
+    class="border-1 fixed bottom-0 left-0 right-0 z-[100] flex rounded-t-2xl border border-[var(--white-icon-tr)] bg-[#1414149c] backdrop-blur-xl transition-all md:bottom-auto md:top-0 md:mt-6 md:w-[33rem] md:justify-self-center md:rounded-full"
   >
-    <div class="container mx-auto flex justify-center items-center p-3">
+    <div class="container mx-auto flex items-center justify-center p-3">
       <ul
-        class="flex w-full justify-between md:space-x-6 md:justify-center md:gap-12 gap-6"
+        class="flex w-full justify-between gap-6 md:justify-center md:gap-12 md:space-x-6"
       >
         {
           navItems.map((item) => (
             <li class="flex-1 md:flex-none">
               <a
                 href={item.href}
-                class="flex flex-col items-center gap-1 text-[var(--white-icon)] transition-colors text-xs md:text-base"
+                class="flex flex-col items-center gap-1 text-xs text-[var(--white-icon)] transition-colors md:text-base"
               >
-                <span class="md:hidden flex items-center justify-center w-6 h-6">
+                <span class="flex h-6 w-6 items-center justify-center md:hidden">
                   <fragment set:html={item.icon} />
                 </span>
                 <span class="hidden md:inline-block">{item.label}</span>
@@ -88,7 +88,7 @@ const navItems: NavItem[] = [
 
     const observer = new IntersectionObserver(
       observerCallback,
-      observerOptions
+      observerOptions,
     );
     sections.forEach((section) => observer.observe(section));
   });

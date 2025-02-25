@@ -6,8 +6,8 @@ import ScrollLinked from "@/React/ScrollLinked";
 import GitHubCalendar from "react-github-calendar";
 
 import GitHubCalendarWrapper from "@/React/GitHubCalendarWrapper.tsx";
-
 ---
+
 <!-- <script
       src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js">
     </script>
@@ -16,28 +16,29 @@ import GitHubCalendarWrapper from "@/React/GitHubCalendarWrapper.tsx";
       href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
     />  -->
 <ScrollLinked client:load />
-<section class="text-[var(--white)] mt-12 md:mt-0" id="home">
-  <div class="max-w-5xl mx-auto space-y-8 md:py-36 pb-14">
-    <div class="text-left space-y-4">
-      <p class="text-md md:text-lg text-[var(--white-icon)] shiny-white">
+<section class="mt-12 text-[var(--white)] md:mt-0" id="home">
+  <div class="mx-auto max-w-5xl space-y-8 pb-14 md:py-36">
+    <div class="space-y-4 text-left">
+      <p class="text-md shiny-white text-[var(--white-icon)] md:text-lg">
         Hi, I'm Andrew Pitblado
       </p>
       <div
-        class="flex flex-col lg:flex-row lg:items-center space-y-4 lg:space-y-0 lg:space-x-8 md:gap-4"
+        class="flex flex-col space-y-4 md:gap-4 lg:flex-row lg:items-center lg:space-x-8 lg:space-y-0"
       >
-      <div>
-        <h1
-           class="text-[var(--white)] text-5xl md:text-6xl font-medium text-pretty border-r-4 border-r-white animate-typing overflow-hidden whitespace-nowrap w-[290px] md:w-[385px]"
-        >
-          Software <br/>Developer
-        </h1>
-
-      </div>
-        <p class="text-md md:text-2xl text-[var(--white-icon)]">
-          I am a fourth year Computer Science student at Western University, with a passion for <span class="text-[var(--sec)] shiny-sec"
-          >frontend</span
-        >, and <span class="text-[var(--sec)] shiny-sec">mobile</span> development.
-          I am always looking for new tools and technologies that I can use to improve my skills  
+        <div>
+          <h1
+            class="w-[290px] animate-typing overflow-hidden whitespace-nowrap text-pretty border-r-4 border-r-white text-5xl font-medium text-[var(--white)] md:w-[385px] md:text-6xl"
+          >
+            Software <br />Developer
+          </h1>
+        </div>
+        <p class="text-md text-[var(--white-icon)] md:text-2xl">
+          I am a fourth year Computer Science student at Western University,
+          with a passion for <span class="shiny-sec text-[var(--sec)]"
+            >frontend</span
+          >, and <span class="shiny-sec text-[var(--sec)]">mobile</span> development.
+          I am always looking for new tools and technologies that I can use to improve
+          my skills
         </p>
       </div>
       <div class="flex justify-start gap-2 pt-3 md:pt-6">
@@ -45,7 +46,7 @@ import GitHubCalendarWrapper from "@/React/GitHubCalendarWrapper.tsx";
           target="_blank"
           href="https://github.com/AndrewPitblado"
           aria-label="GitHub"
-          class="text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
+          class="border-1 rounded-xl border border-[var(--white-icon-tr)] bg-[#1414149c] p-3 text-[var(--white-icon)] transition duration-300 ease-in-out hover:bg-[var(--white-icon-tr)] hover:text-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +63,7 @@ import GitHubCalendarWrapper from "@/React/GitHubCalendarWrapper.tsx";
           target="_blank"
           href="https://linkedin.com/in/hernandezoscar-dev"
           aria-label="LinkedIn"
-          class="text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
+          class="border-1 rounded-xl border border-[var(--white-icon-tr)] bg-[#1414149c] p-3 text-[var(--white-icon)] transition duration-300 ease-in-out hover:bg-[var(--white-icon-tr)] hover:text-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +80,7 @@ import GitHubCalendarWrapper from "@/React/GitHubCalendarWrapper.tsx";
           target="_blank"
           href="https://mail.google.com/mail/?view=cm&fs=1&to=oscarandreshernandezpineda@gmail.com&su=Hey%20Oscar!"
           aria-label="Email"
-          class="text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
+          class="border-1 rounded-xl border border-[var(--white-icon-tr)] bg-[#1414149c] p-3 text-[var(--white-icon)] transition duration-300 ease-in-out hover:bg-[var(--white-icon-tr)] hover:text-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -98,10 +99,10 @@ import GitHubCalendarWrapper from "@/React/GitHubCalendarWrapper.tsx";
 
     <LogoWall />
 
-    <div class="flex flex-col lg:flex-row items-center gap-8">
+    <div class="flex flex-col items-center gap-8 lg:flex-row">
       <SkillsList client:load />
       <div
-        class="flex justify-center md:w-full md:h-[292px] size-[290px] pt-3 md:pt-9 md:ml-16"
+        class="flex size-[290px] justify-center pt-3 md:ml-16 md:h-[292px] md:w-full md:pt-9"
       >
         <LetterGlitch
           client:load
@@ -114,10 +115,6 @@ import GitHubCalendarWrapper from "@/React/GitHubCalendarWrapper.tsx";
       </div>
     </div>
   </div>
-  
-  
-    
-  
 </section>
 <!-- <script>
   declare const GitHubCalendar: any;
@@ -156,23 +153,22 @@ import GitHubCalendarWrapper from "@/React/GitHubCalendarWrapper.tsx";
     display: flex;
     justify-content: center;
   }
-  
+
   .react-github-calendar {
     width: 100%;
     max-width: 100%;
   }
-  
+
   .react-github-calendar .calendar {
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
   }
-  
+
   /* Make calendar responsive */
   @media (max-width: 768px) {
     .react-github-calendar .calendar {
       font-size: 10px;
     }
   }
-  
 </style>

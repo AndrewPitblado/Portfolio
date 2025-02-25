@@ -2,10 +2,10 @@
 import LikeButton from "../React/LikeButton.tsx";
 ---
 
-<footer class="w-full py-12 border-t border-[#ffffff10]">
-  <div class="max-w-5xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-      <div class="flex flex-col lg:items-start items-center space-y-6 gap-9">
+<footer class="w-full border-t border-[#ffffff10] py-12">
+  <div class="mx-auto max-w-5xl">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-12">
+      <div class="flex flex-col items-center gap-9 space-y-6 lg:items-start">
         <div class="flex space-x-6 sm:space-x-8">
           {
             [
@@ -28,10 +28,10 @@ import LikeButton from "../React/LikeButton.tsx";
               <a
                 href={link.href}
                 target="_blank"
-                class="flex flex-col items-center group"
+                class="group flex flex-col items-center"
                 aria-label={link.label}
               >
-                <div class="text-[var(--white-icon)] hover:text-[var(--white)] transition duration-300 ease-in-out">
+                <div class="text-[var(--white-icon)] transition duration-300 ease-in-out hover:text-[var(--white)]">
                   <div set:html={link.icon} />
                 </div>
               </a>
@@ -41,8 +41,8 @@ import LikeButton from "../React/LikeButton.tsx";
         <LikeButton client:load />
       </div>
 
-      <div class="flex flex-col items-center md:items-start space-y-6">
-        <div class="grid grid-cols-1 gap-3 w-full max-w-xs">
+      <div class="flex flex-col items-center space-y-6 md:items-start">
+        <div class="grid w-full max-w-xs grid-cols-1 gap-3">
           {
             [
               {
@@ -65,16 +65,16 @@ import LikeButton from "../React/LikeButton.tsx";
               },
             ].map((tech) => (
               <div class="flex items-center space-x-3">
-                <span class="text-[var(--white-icon)] text-sm">
+                <span class="text-sm text-[var(--white-icon)]">
                   {tech.desc}
                 </span>
                 <img
                   src={tech.icon}
                   alt={tech.alt}
-                  class="h-5 w-5 object-contain filter brightness-0 invert opacity-50"
+                  class="h-5 w-5 object-contain opacity-50 brightness-0 invert filter"
                   loading="lazy"
                 />
-                <span class="text-[var(--white-icon)] text-sm">
+                <span class="text-sm text-[var(--white-icon)]">
                   {tech.name}
                 </span>
               </div>
@@ -83,12 +83,12 @@ import LikeButton from "../React/LikeButton.tsx";
         </div>
       </div>
 
-      <div class="flex flex-col items-center lg:items-start space-y-6">
+      <div class="flex flex-col items-center space-y-6 lg:items-start">
         <div class="w-full max-w-xs">
           <iframe
             style="border-radius:12px border:0;"
             src="https://open.spotify.com/embed/album/3OxfaVgvTxUTy7276t7SPU?utm_source=generator&theme=0"
-            class="w-full h-40"
+            class="h-40 w-full"
             allowfullscreen=""
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
@@ -97,8 +97,8 @@ import LikeButton from "../React/LikeButton.tsx";
       </div>
     </div>
 
-    <div class="mt-12 pt-8 border-t border-[#ffffff10]">
-      <p class="text-center text-sm text-[var(--white-icon)] space-y-2">
+    <div class="mt-12 border-t border-[#ffffff10] pt-8">
+      <p class="space-y-2 text-center text-sm text-[var(--white-icon)]">
         <!-- If you are using this template, by MIT License you can't remove the copyright notice -->
         <span class="block sm:inline"
           >Copyright © 2025 <a href="https://github.com/Gothsec"

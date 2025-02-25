@@ -1,61 +1,103 @@
-<section id="contact" class="w-full py-12 border-t border-[#ffffff10]">
-  <div class="max-w-5xl mx-auto">
-    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">Let's talk</h2>
-    <h3 class="text-4xl md:text-5xl font-medium text-[var(--white)] mb-6">
+<section id="contact" class="w-full border-t border-[#ffffff10] py-12">
+  <div class="mx-auto max-w-5xl">
+    <h2 class="shiny-sec mb-2 text-lg text-[var(--sec)]">Let's talk</h2>
+    <h3 class="mb-6 text-4xl font-medium text-[var(--white)] md:text-5xl">
       Contact
     </h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
       <div class="text-[var(--white-icon)]">
         <p class="mb-4">
           Have a question or a project in mind? Feel free to reach out.
         </p>
         <div class="flex items-center gap-2">
           <span>Location:</span>
-          <span class="text-[var(--white)]">Colombia, Valle del cauca</span>
+          <span class="text-[var(--white)]">London ON Canada</span>
         </div>
       </div>
 
       <div>
         <form
-          id="contact-form"
-          action="https://formspree.io/f/mnnjznkj"
+          action="https://api.web3forms.com/submit"
           method="POST"
-          class="flex flex-col gap-4"
+          id="form"
+          class="needs-validation"
+          data-astro-reload
+          novalidate
         >
+          <!-- Add your Web3Forms Access Key -->
           <input
-            type="text"
-            name="from_name"
-            placeholder="Name"
-            required
-            class="px-4 py-2 bg-[#1414149c] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
+            type="hidden"
+            name="access_key"
+            value="e17d4ba9-ea3f-4ebe-8a7a-81dd8b541744"
           />
+
           <input
-            type="email"
-            name="reply_to"
-            placeholder="Email"
-            required
-            class="px-4 py-2 bg-[#1414149c] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
+            type="checkbox"
+            class="hidden"
+            style="display:none"
+            name="botcheck"
           />
-          <textarea
-            name="message"
-            placeholder="Message"
-            rows="6"
-            required
-            class="px-4 py-2 bg-[#1414149c] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)] resize-none"
-          ></textarea>
-          <button
-            type="submit"
-            class="px-4 py-2 bg-[var(--white-icon-tr)] text-[var(--white)] rounded-lg opacity-60 transition-opacity border border-[var(--white-icon-tr)] hover:opacity-100 hover:bg-[var(--white-icon-tr)]"
-          >
-            Submit
-          </button>
+          <div class="mb-5">
+            <input
+              type="text"
+              placeholder="Full Name"
+              required
+              class="bg-gray-900 w-full rounded-md border border-slate-300 px-4 py-3 outline-none ring-slate-100 placeholder:text-slate-400 focus:border-slate-600 focus:ring-4"
+              name="name"
+            />
+            <div
+              class="empty-feedback invalid-feedback mt-1 text-sm text-red-400"
+            >
+              Please provide your full name.
+            </div>
+          </div>
+          <div class="mb-5">
+            <label for="email_address" class="sr-only">Email Address</label
+            ><input
+              id="email_address"
+              type="email"
+              placeholder="Email Address"
+              name="email"
+              required
+              class="bg-gray-900 w-full rounded-md border border-slate-300 px-4 py-3 outline-none ring-slate-100 placeholder:text-slate-400 focus:border-slate-600 focus:ring-4"
+            />
+            <div class="empty-feedback mt-1 text-sm text-red-400">
+              Please provide your email address.
+            </div>
+            <div class="invalid-feedback mt-1 text-sm text-red-400">
+              Please provide a valid email address.
+            </div>
+          </div>
+          <div class="mb-3 ">
+            <textarea
+              name="message"
+              required
+              placeholder="Your Message"
+              class=" bg-gray-900 text-white h-36 w-full rounded-md border border-slate-300 px-4 py-3 outline-none ring-slate-100 placeholder:text-slate-400 focus:border-slate-600 focus:ring-4"
+            ></textarea>
+            <div
+              class="empty-feedback invalid-feedback mt-1 text-sm text-red-400"
+            >
+              Please enter your message.
+            </div>
+          </div>
+          <div class="w- flex items-center justify-center">
+            <button
+              type="submit"
+              class="rounded-lg border border-[var(--white-icon-tr)] bg-[var(--white-icon-tr)] px-4 py-2 text-[var(--white)] opacity-60 transition-opacity hover:bg-[var(--white-icon-tr)] hover:opacity-100"
+              >Send Message</button
+            >
+          </div>
+
+          <div id="result" class="mt-3 text-center"></div>
         </form>
         <div
           id="form-message"
-          class="hidden justify-center items-center mt-4 text-[var(--white)] text-lg"
+          class="mt-4 hidden items-center justify-center text-lg text-[var(--white)]"
         >
           ✅ Thank you for your message!
         </div>
+        
       </div>
     </div>
   </div>
@@ -89,4 +131,84 @@
       alert("There was a problem sending your message.");
     }
   });
+</script>
+
+
+
+<style>
+  .invalid-feedback,
+  .empty-feedback {
+    display: none;
+  }
+
+  .was-validated :placeholder-shown:invalid ~ .empty-feedback {
+    display: block;
+  }
+
+  .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
+    display: block;
+  }
+
+  .is-invalid,
+  .was-validated :invalid {
+    border-color: #dc3545;
+  }
+</style>
+
+<script is:inline>
+  // use astro:page-load event if you are using View Transitions
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+      const form = document.getElementById("form");
+      const result = document.getElementById("result");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        form.classList.add("was-validated");
+        if (!form.checkValidity()) {
+          form.querySelectorAll(":invalid")[0].focus();
+          return;
+        }
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        result.innerHTML = "Sending...";
+
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: json,
+        })
+          .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+              result.classList.add("text-green-500");
+              result.innerHTML = json.message;
+            } else {
+              console.log(response);
+              result.classList.add("text-red-500");
+              result.innerHTML = json.message;
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            result.innerHTML = "Something went wrong!";
+          })
+          .then(function () {
+            form.reset();
+            form.classList.remove("was-validated");
+            setTimeout(() => {
+              result.style.display = "none";
+            }, 5000);
+          });
+      });
+    },
+    { once: true },
+  );
 </script>
