@@ -3,7 +3,18 @@ import LetterGlitch from "../React/LetterGlitch.tsx";
 import LogoWall from "../components/logoWall.astro";
 import SkillsList from "../React/SkillsList.tsx";
 import ScrollLinked from "@/React/ScrollLinked";
+import GitHubCalendar from "react-github-calendar";
+
+import GitHubCalendarWrapper from "@/React/GitHubCalendarWrapper.tsx";
+
 ---
+<!-- <script
+      src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js">
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
+    />  -->
 <ScrollLinked client:load />
 <section class="text-[var(--white)] mt-12 md:mt-0" id="home">
   <div class="max-w-5xl mx-auto space-y-8 md:py-36 pb-14">
@@ -103,7 +114,20 @@ import ScrollLinked from "@/React/ScrollLinked";
       </div>
     </div>
   </div>
+  
+  
+    
+  
 </section>
+<!-- <script>
+  declare const GitHubCalendar: any;
+  GitHubCalendar(".calendar", "AndrewPitblado", {
+    tooltips: true,
+    responsive: true,
+    
+  });
+  
+</script> -->
 
 <style is:global>
   .shiny-sec {
@@ -124,4 +148,31 @@ import ScrollLinked from "@/React/ScrollLinked";
       background-position: 0% 50%;
     }
   }
+  .github-calendar-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem 0;
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .react-github-calendar {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .react-github-calendar .calendar {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  /* Make calendar responsive */
+  @media (max-width: 768px) {
+    .react-github-calendar .calendar {
+      font-size: 10px;
+    }
+  }
+  
 </style>

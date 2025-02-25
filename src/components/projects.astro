@@ -4,7 +4,7 @@ import svgl from "../../public/svgl.png";
 import stockin from "../../public/stockin.png";
 import humourhub from "../../public/humourhub.png";
 import logogame from "../../public/logogame.png";
-
+import GitHubCalendarWrapper from "@/React/GitHubCalendarWrapper";
 interface Project {
   title: string;
   image: ImageMetadata;
@@ -129,5 +129,8 @@ const projects: Project[] = [
         ></path>
       </svg>
     </a>
+  </div>
+  <div class="w-full max-w-5xl mx-auto px-4 md:px-0">
+    <GitHubCalendarWrapper username="AndrewPitblado" client:only="react"/>
   </div>
 </section>

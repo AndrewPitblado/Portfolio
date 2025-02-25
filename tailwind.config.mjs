@@ -15,7 +15,7 @@ export default {
             visibility: "hidden",
           },
           "100%": {
-            width: "105%",
+            width: "100%",
             visibility: "visible",
           },
         },
@@ -30,7 +30,7 @@ export default {
       },
       animation: {
         scale: "scaleAnim 300ms ease-in-out",
-        typing: "typing 2s steps(30) infinite alternate, blink .7s infinite",
+        typing: "typing 2s steps(30) alternate, blink 1s step-end infinite",
       },
     },
   },
