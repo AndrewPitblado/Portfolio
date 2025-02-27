@@ -41,6 +41,7 @@ import GitHubCalendarWrapper from "@/React/GitHubCalendarWrapper.tsx";
           my skills
         </p>
       </div>
+
       <div class="flex justify-start gap-2 pt-3 md:pt-6">
         <a
           target="_blank"
@@ -94,6 +95,58 @@ import GitHubCalendarWrapper from "@/React/GitHubCalendarWrapper.tsx";
             ></path>
           </svg>
         </a>
+      </div>
+    </div>
+    <div
+      class="my-8 overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl"
+    >
+      <div class="relative">
+        <img
+          src="/iosdev.png"
+          alt="Andrew Pitblado"
+          class="h-[240px] w-full object-cover transition-transform duration-500 ease-in-out hover:scale-105"
+        />
+        <div class="flip-content">
+          <div
+            class="flex h-full flex-col items-center justify-center bg-gradient-to-br from-[var(--sec-tr)] to-[#1414149c] p-6 text-center"
+          >
+            <img src="/svg/swift.svg" alt="Logo" class="mb-4 h-16 w-auto" />
+            <h3 class="text-xl font-bold text-white">Mobile Development</h3>
+            <p class="mt-2 text-[var(--white-icon)]">
+              While I have an interest in mobile developemt as a whole, I have a
+              keen interest in iOS development and have spent most of my time
+              learning the swift and swiftUI frameworks
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="my-8 overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl"
+    >
+      <div class="relative">
+        <img
+          src="/webdev.jpg"
+          alt="Andrew Pitblado"
+          class="h-[240px] w-full object-cover transition-transform duration-500 ease-in-out hover:scale-105"
+        />
+        <div class="flip-content">
+          <div
+            class="flex h-full flex-col items-center justify-center bg-gradient-to-br from-[var(--sec-tr)] to-[#1414149c] p-6 text-center"
+          >
+            <img src="/svg/angular.svg" alt="Logo" class="mb-4 h-16 w-auto" />
+            <h3 class="text-xl font-bold text-white">Web Development</h3>
+            <p class="mt-2 text-[var(--white-icon)]">
+              I created my very first website in 2021 using just HTML, CSS and
+              JavaScript. While it was quite simple, it really got me exposed to
+              the world of web development. Since then I have been working with
+              different frameworks and libraries such as Angular, React and
+              TailwindCSS. I am definitely more comportable with the frontend
+              side of things but and actively working on imporving my backend
+              skills
+            </p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -170,5 +223,19 @@ import GitHubCalendarWrapper from "@/React/GitHubCalendarWrapper.tsx";
     .react-github-calendar .calendar {
       font-size: 10px;
     }
+  }
+  .flip-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .relative:hover .flip-content {
+    transform: translateY(0);
   }
 </style>
