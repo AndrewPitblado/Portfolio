@@ -25,7 +25,23 @@ const navItems: NavItem[] = [
 ---
 
 <div class="flex w-full justify-center">
+  <!-- Hamburger button that appears when scrolling -->
+  <button
+    id="menu-toggle"
+    class="fixed right-4 top-4 z-[110] hidden h-10 w-10 items-center justify-center rounded-full border border-[var(--white-icon-tr)] bg-[#1414149c] p-2 text-white backdrop-blur-xl transition-all duration-300 hover:bg-[var(--white-icon-tr)] md:right-6 md:top-6"
+    aria-label="Toggle menu"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      class="size-6"
+    >
+      <path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path>
+    </svg>
+  </button>
   <nav
+    id="main-nav"
     class="border-1 fixed bottom-0 left-0 right-0 z-[100] flex rounded-t-2xl border border-[var(--white-icon-tr)] bg-[#1414149c] backdrop-blur-xl transition-all md:bottom-auto md:top-0 md:mt-6 md:w-[33rem] md:justify-self-center md:rounded-full"
   >
     <div class="container mx-auto flex items-center justify-center p-3">
@@ -54,6 +70,13 @@ const navItems: NavItem[] = [
 </div>
 
 <script>
+  // Declare the toggleMenu function on the window object
+  declare global {
+    interface Window {
+      toggleMenu: (show?: boolean) => void;
+    }
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -65,6 +88,10 @@ const navItems: NavItem[] = [
           behavior: "smooth",
         });
       }
+      // Close menu when clicking a link (if it's the collapsed menu)
+      if (window.innerWidth >= 768 && window.scrollY > 100) {
+        window.toggleMenu(false);
+      }
     });
   });
 
@@ -72,6 +99,104 @@ const navItems: NavItem[] = [
     const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll("nav a[href^='#']");
     const observerOptions = { threshold: 0.6 };
+    const menuToggle = document.getElementById("menu-toggle");
+    const mainNav = document.getElementById("main-nav");
+    let isMenuOpen = true;
+
+    // Function to toggle menu visibility
+    window.toggleMenu = (show) => {
+      if (show === undefined) {
+        isMenuOpen = !isMenuOpen;
+      } else {
+        isMenuOpen = show;
+      }
+
+      if (isMenuOpen) {
+        mainNav.classList.remove("nav-hidden");
+        mainNav.classList.add("nav-visible");
+        menuToggle.classList.add("menu-open");
+        menuToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+          <path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z"></path>
+        </svg>`;
+      } else {
+        mainNav.classList.remove("nav-visible");
+        mainNav.classList.add("nav-hidden");
+        menuToggle.classList.remove("menu-open");
+        menuToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+          <path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path>
+        </svg>`;
+      }
+    };
+
+    // Toggle menu when hamburger is clicked
+    menuToggle.addEventListener("click", () => {
+      window.toggleMenu();
+    });
+
+    // Handle scroll events to show/hide navbar
+    let lastScrollTop = 0;
+    window.addEventListener("scroll", () => {
+      const isMobile = window.innerWidth < 768;
+      const scrollThreshold = isMobile ? 50 : 100;
+      const currentScroll =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+      if (currentScroll > scrollThreshold) {
+        // User has scrolled down
+        if (!isMobile) {
+          menuToggle.classList.remove("hidden");
+          menuToggle.classList.add("flex");
+          window.toggleMenu(false);
+        }
+
+        // Auto-hide the menu on desktop
+        if (isMenuOpen) {
+          window.toggleMenu(false);
+        }
+      } else {
+        // User is at the top
+        if (!isMobile) {
+          menuToggle.classList.add("hidden");
+          menuToggle.classList.remove("flex");
+          window.toggleMenu(true);
+        }
+      }
+
+      // On mobile, behavior stays the same (fixed at bottom)
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+
+    // Initialize menu state based on screen position
+    if (window.scrollY > (window.innerWidth < 768 ? 50 : 100)) {
+      if (window.innerWidth >= 768) {
+        menuToggle.classList.remove("hidden");
+        menuToggle.classList.add("flex");
+        window.toggleMenu(false);
+      }
+    }
+
+    window.addEventListener("resize", () => {
+      const isMobile = window.innerWidth < 768;
+
+      if (isMobile) {
+        // On mobile, hide hamburger completely and ensure mobile nav is visible
+        menuToggle.classList.add("hidden");
+        menuToggle.classList.remove("flex");
+        mainNav.classList.remove("nav-hidden");
+        mainNav.classList.add("nav-visible");
+      } else {
+        // On desktop, apply scroll-based logic
+        if (window.scrollY > 100) {
+          menuToggle.classList.remove("hidden");
+          menuToggle.classList.add("flex");
+          window.toggleMenu(false);
+        } else {
+          menuToggle.classList.add("hidden");
+          menuToggle.classList.remove("flex");
+          window.toggleMenu(true);
+        }
+      }
+    });
 
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
@@ -103,5 +228,43 @@ const navItems: NavItem[] = [
 
   nav a.active {
     color: white !important;
+  }
+
+  #menu-toggle {
+    opacity: 0;
+    transform: scale(0.8);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      background-color 0.3s ease;
+  }
+
+  #menu-toggle.flex {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .menu-open {
+    background-color: rgba(84, 121, 252, 0.3) !important;
+  }
+  /* Desktop navbar animations */
+  @media (min-width: 768px) {
+    #main-nav {
+      transition:
+        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease;
+    }
+
+    #main-nav.nav-hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #main-nav.nav-visible {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 </style>
