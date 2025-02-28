@@ -22,7 +22,7 @@ export default function ScrollLinked() {
           originX: 0,
           zIndex: 999,
 
-          backgroundColor: "#999",
+          backgroundColor: "#224499",
         }}
       />
     </>
