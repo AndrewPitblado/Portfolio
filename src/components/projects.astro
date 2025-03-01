@@ -49,23 +49,25 @@ const projects: Project[] = [
         projects.map((project) => (
           <div class="group relative">
             <div class="relative mb-4">
-              <a
-                href={project.preview}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="block"
-              >
-                <div class="mb-4 overflow-hidden rounded-2xl bg-[#1414149c] shadow-lg transition-shadow duration-300 hover:shadow-xl">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    class="h-48 w-full object-contain transition-transform duration-300 group-hover:scale-105 md:h-72"
-                  />
-                </div>
-                <div class="absolute inset-0 flex items-center justify-center rounded-2xl bg-black/80 p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <p class="text-center text-white">{project.description}</p>
-                </div>
-              </a>
+              <div class="hover::shadow-xl group relative mb-4 overflow-hidden rounded-2xl bg-[#1414149c] shadow-lg transition-shadow duration-300">
+                <a
+                  href={project.preview}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block"
+                >
+                  <div class="mb-4 overflow-hidden rounded-2xl bg-[#1414149c] shadow-lg transition-shadow duration-300 hover:shadow-xl">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      class="h-48 w-full object-contain transition-transform duration-300 group-hover:scale-105 md:h-72"
+                    />
+                  </div>
+                  <div class="absolute inset-0 flex items-center justify-center rounded-2xl bg-black/80 p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <p class="text-center text-white">{project.description}</p>
+                  </div>
+                </a>
+              </div>
 
               <div class="flex items-center px-3">
                 <div class="flex-grow">
