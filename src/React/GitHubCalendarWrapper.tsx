@@ -83,7 +83,7 @@ export default function GitHubCalendarWrapper({
         // transformData={selectLastHalfYear}
         theme={{
           light: [
-            "#a0a0a0",
+            "rgb(124, 124, 124)",
             "rgb(117, 197, 237)",
             "rgb(37, 130, 192)",
             "rgb(22, 100, 218)",
@@ -105,6 +105,7 @@ export default function GitHubCalendarWrapper({
             "data-tooltip-id": "react-tooltip",
             "data-tooltip-html": `${activity.count} contributions on ${activity.date}`,
             onClick: (event) => handleBlockClick(activity, event),
+            className: "cursor-pointer",
           })
         }
       />

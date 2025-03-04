@@ -12,6 +12,7 @@ interface Project {
   preview: string;
   status: string;
   description?: string;
+  stack?: string[];
 }
 
 const projects: Project[] = [
@@ -21,6 +22,7 @@ const projects: Project[] = [
     link: "https://github.com/AndrewPitblado/HumourHub",
     preview: "https://stockin-demo.vercel.app",
     status: "Deployed",
+    stack: ["Swift", "SwiftUI"],
     description:
       "An iOS app showing many different jokes of various categories to the user. Made with SwiftUI and Swift.",
   },
@@ -30,6 +32,7 @@ const projects: Project[] = [
     link: "https://github.com/AndrewPitblado/logo-game",
     preview: "https://svgl.app",
     status: "Deployed",
+    stack: ["React", "Tailwind CSS", "PostgreSQL", "Vercel"],
     description:
       "A simple game where the user tries to guess the company name based on the logos. Built with React, styled with Tailwind CSS, and delpoyed with vercel.",
   },
@@ -75,6 +78,33 @@ const projects: Project[] = [
                   <span class="py-1 text-sm text-[var(--white-icon)]">
                     {project.status}
                   </span>
+                  <div class="mt-2 flex flex-wrap gap-2">
+                    {project.stack &&
+                      project.stack.map((tech) => {
+                        // Optional: Custom colors based on technology
+                        const techColors = {
+                          React: "bg-blue-500",
+                          Swift: "bg-orange-500",
+                          SwiftUI: "bg-orange-400",
+                          "Tailwind CSS": "bg-cyan-500",
+                          PostgreSQL: "bg-indigo-600",
+                          Vercel: "bg-black",
+                          // Add more technologies as needed
+                        };
+                        const bgColor = techColors[tech] || "bg-[#ff6600]"; // Default color
+
+                        return (
+                          <span
+                            data-aos="fade-up"
+                            data-aos-anchor-placement="top-bottom"
+                            data-aos-delay="150"
+                            class={`inline-flex items-center rounded-full ${bgColor} px-3 py-1 text-xs text-white transition-all`}
+                          >
+                            {tech}
+                          </span>
+                        );
+                      })}
+                  </div>
                 </div>
                 <div class="ml-auto flex gap-2">
                   <a
