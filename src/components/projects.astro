@@ -80,7 +80,7 @@ const projects: Project[] = [
                   </span>
                   <div class="mt-2 flex flex-wrap gap-2">
                     {project.stack &&
-                      project.stack.map((tech) => {
+                      project.stack.map((tech, index) => {
                         // Optional: Custom colors based on technology
                         const techColors = {
                           React: "bg-blue-500",
@@ -92,12 +92,19 @@ const projects: Project[] = [
                           // Add more technologies as needed
                         };
                         const bgColor = techColors[tech] || "bg-[#ff6600]"; // Default color
-
+                        const animations = [
+                          "fade-up",
+                          "fade-down",
+                          "fade-left",
+                          "fade-right",
+                          "zoom-in",
+                        ];
+                        const animation = animations[index % animations.length];
                         return (
                           <span
                             data-aos="fade-up"
                             data-aos-anchor-placement="top-bottom"
-                            data-aos-delay="150"
+                            data-aos-delay={index * 50 + 200}
                             class={`inline-flex items-center rounded-full ${bgColor} px-3 py-1 text-xs text-white transition-all`}
                           >
                             {tech}
