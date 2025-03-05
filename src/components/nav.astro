@@ -98,7 +98,7 @@ const navItems: NavItem[] = [
   document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll("nav a[href^='#']");
-    const observerOptions = { threshold: 0.6 };
+    const observerOptions = { threshold: 0.3, rootMargin: "0px 0px -20% 0px" };
     const menuToggle = document.getElementById("menu-toggle");
     const mainNav = document.getElementById("main-nav");
     let isMenuOpen = true;
@@ -197,18 +197,38 @@ const navItems: NavItem[] = [
         }
       }
     });
+    function setActiveLink(id) {
+      // First remove active class from all links
+      navLinks.forEach((link) => link.classList.remove("active"));
 
+      // Find the link with matching href and add active class
+      const activeLink = document.querySelector(`nav a[href="#${id}"]`);
+      if (activeLink) {
+        activeLink.classList.add("active");
+        console.log("Active link set to:", id);
+      }
+    }
+    // Initially set home as active if we're at the top
+    if (window.scrollY < 50) {
+      setActiveLink("home");
+    }
     const observerCallback = (entries) => {
+      let hasIntersection = false;
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           navLinks.forEach((link) => link.classList.remove("active"));
           const id = entry.target.getAttribute("id");
+          console.log("Current Section:", id);
           const activeLink = document.querySelector(`nav a[href="#${id}"]`);
           if (activeLink) {
             activeLink.classList.add("active");
+            console.log("Active Link set to:", activeLink.getAttribute("href"));
           }
         }
       });
+      if (!hasIntersection && window.scrollY < 100) {
+        setActiveLink("home");
+      }
     };
 
     const observer = new IntersectionObserver(
@@ -216,6 +236,13 @@ const navItems: NavItem[] = [
       observerOptions,
     );
     sections.forEach((section) => observer.observe(section));
+    // Also update active link on scroll for edge cases
+    window.addEventListener("scroll", () => {
+      // If at the top of the page, set home as active
+      if (window.scrollY < 50) {
+        setActiveLink("home");
+      }
+    });
   });
 </script>
 
@@ -226,8 +253,33 @@ const navItems: NavItem[] = [
     }
   }
 
-  nav a.active {
+  nav a.active,
+  nav a.active span {
     color: white !important;
+  }
+
+  /* Target SVGs within active links */
+  nav a.active svg,
+  nav a.active span svg {
+    fill: white !important;
+  }
+
+  /* Target the fragment SVG specifically */
+  nav a.active span fragment svg,
+  nav a.active span fragment path {
+    fill: white !important;
+  }
+
+  /* Add a specific fix for the home icon in the mobile view */
+  nav a[href="#home"].active span svg path,
+  nav a[href="#home"].active span fragment svg path {
+    fill: white !important;
+  }
+
+  /* Force the currentColor override for SVGs */
+  nav a.active span svg *[fill="currentColor"],
+  nav a.active span fragment svg *[fill="currentColor"] {
+    fill: white !important;
   }
 
   #menu-toggle {
