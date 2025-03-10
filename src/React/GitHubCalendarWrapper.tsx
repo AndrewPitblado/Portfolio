@@ -16,7 +16,7 @@ const selectLastHalfYear = (contributions) => {
   const today = new Date();
   const currentYear = today.getFullYear();
   const currentMonth = today.getMonth();
-  const shownMonths = 6;
+  const shownMonths = 8;
 
   return contributions.filter((activity) => {
     const date = new Date(activity.date);
@@ -80,7 +80,7 @@ export default function GitHubCalendarWrapper({
     <div className="github-calendar-container relative" ref={containerRef}>
       <GitHubCalendar
         username={username}
-        // transformData={selectLastHalfYear}
+        transformData={selectLastHalfYear}
         theme={{
           light: [
             "rgb(124, 124, 124)",
@@ -135,9 +135,7 @@ export default function GitHubCalendarWrapper({
                 marginLeft: "-8px",
               }}
             />
-            <h3 className="mb-2 text-xl font-bold">
-              {new Date(selectedActivity.date).toDateString()}
-            </h3>
+            <h3 className="mb-2 text-xl font-bold">{selectedActivity.date}</h3>
             <div className="mb-2 flex items-center">
               <div className="mr-2">Contribution level:</div>
               <div className="flex">
