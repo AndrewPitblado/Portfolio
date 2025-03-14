@@ -51,8 +51,8 @@ const projects: Project[] = [
       {
         projects.map((project) => (
           <div class="group relative">
-            <div class="relative mb-4">
-              <div class="hover::shadow-xl group relative mb-4 overflow-hidden rounded-2xl bg-[#1414149c] shadow-lg transition-shadow duration-300">
+            <div class="taos:scale-[1.2] taos:opacity-0 relative mb-4 delay-[300ms] duration-[600ms]">
+              <div class="hover::shadow-xl group relative mb-4 overflow-hidden rounded-2xl bg-[#1414149c] shadow-lg transition-shadow duration-300 duration-[400ms]">
                 <a
                   href={project.preview}
                   target="_blank"
@@ -92,20 +92,12 @@ const projects: Project[] = [
                           // Add more technologies as needed
                         };
                         const bgColor = techColors[tech] || "bg-[#ff6600]"; // Default color
-                        const animations = [
-                          "fade-up",
-                          "fade-down",
-                          "fade-left",
-                          "fade-right",
-                          "zoom-in",
-                        ];
-                        const animation = animations[index % animations.length];
+
                         return (
                           <span
-                            data-aos="fade-up"
-                            data-aos-anchor-placement="top-bottom"
-                            data-aos-delay={index * 50 + 200}
-                            class={`inline-flex items-center rounded-full ${bgColor} px-3 py-1 text-xs text-white transition-all`}
+                            class={`inline-flex items-center rounded-full ${bgColor} taos:translate-y-[20px] taos:opacity-0 px-3 py-1 text-xs text-white transition-all`}
+                            style={`--taos-delay: ${Math.min(index * 50 + 300, 800)}ms`}
+                            data-taos-offset="10"
                           >
                             {tech}
                           </span>
