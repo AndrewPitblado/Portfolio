@@ -76,27 +76,30 @@ export default function GitHubCalendarWrapper({
     // }
   };
 
+  // Nord color palette for GitHub contributions
+  const nordTheme = {
+    light: [
+      "#4C566A", // Level 0: Dark nord slate (polar night)
+      "#81A1C1", // Level 1: Light nord blue (frost)
+      "#88C0D0", // Level 2: Bright nord blue (frost)
+      "#5E81AC", // Level 3: Deep nord blue (frost)
+      "#8FBCBB", // Level 4: Nord teal (frost)
+    ],
+    dark: [
+      "#2E3440", // Level 0: Darkest nord color (polar night)
+      "#81A1C1", // Level 1: Light nord blue (frost)
+      "#88C0D0", // Level 2: Bright nord blue (frost)
+      "#5E81AC", // Level 3: Deep nord blue (frost)
+      "#8FBCBB", // Level 4: Nord teal (frost)
+    ],
+  };
+
   return (
     <div className="github-calendar-container relative" ref={containerRef}>
       <GitHubCalendar
         username={username}
         transformData={selectLastHalfYear}
-        theme={{
-          light: [
-            "rgb(124, 124, 124)",
-            "rgb(117, 197, 237)",
-            "rgb(37, 130, 192)",
-            "rgb(22, 100, 218)",
-            "rgb(7, 49, 148)",
-          ],
-          dark: [
-            "rgb(41, 41, 41)",
-            "rgb(117, 197, 237)",
-            "rgb(37, 130, 192)",
-            "rgb(22, 100, 218)",
-            "rgb(7, 49, 148)",
-          ],
-        }}
+        theme={nordTheme}
         blockSize={15}
         blockMargin={5}
         blockRadius={3}
@@ -114,44 +117,51 @@ export default function GitHubCalendarWrapper({
         document.body &&
         createPortal(
           <div
-            className="activity-details fixed rounded-lg bg-slate-800 p-4 shadow-lg"
+            className="activity-details fixed rounded-lg shadow-lg"
             style={{
-              // Position the modal at the click location, adjusted to prevent overflow
               left: `${clientCoordinates.x}px`,
               top: `${clientCoordinates.y - 20}px`,
               width: "250px",
-              transform: "translate(-50%, -100%)", // Center horizontally and position above click
+              transform: "translate(-50%, -100%)",
               zIndex: 999,
-              color: "white",
-              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)", // Add some space between pointer and modal
+              backgroundColor: "#3B4252", // Nord background color (polar night)
+              color: "#ECEFF4", // Nord text color (snow storm)
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
+              padding: "16px",
+              border: "1px solid #4C566A", // Nord border color (polar night lightest)
             }}
           >
             {/* Add a pointer triangle at the bottom of the modal */}
             <div
-              className="absolute h-4 w-4 rotate-45 transform bg-slate-800"
+              className="absolute h-4 w-4 rotate-45 transform"
               style={{
                 bottom: "-8px",
                 left: "50%",
                 marginLeft: "-8px",
+                backgroundColor: "#3B4252", // Same as modal background
+                borderRight: "1px solid #4C566A",
+                borderBottom: "1px solid #4C566A",
               }}
             />
-            <h3 className="mb-2 text-xl font-bold">{selectedActivity.date}</h3>
+            <h3 className="mb-2 text-xl font-bold text-[#88C0D0]">
+              {selectedActivity.date}
+            </h3>
             <div className="mb-2 flex items-center">
-              <div className="mr-2">Contribution level:</div>
+              <div className="mr-2 text-[#E5E9F0]">Contribution level:</div>
               <div className="flex">
                 {[0, 1, 2, 3, 4].map((level) => (
                   <div
                     key={level}
                     className={`mr-1 h-4 w-4 rounded-sm ${
                       level <= selectedActivity.level
-                        ? "bg-blue-500"
-                        : "bg-gray-700"
+                        ? "bg-[#81A1C1]" // Nord frost blue
+                        : "bg-[#4C566A]" // Nord darker gray
                     }`}
                   />
                 ))}
               </div>
             </div>
-            <p className="text-lg">
+            <p className="text-lg text-[#E5E9F0]">
               {selectedActivity.count}{" "}
               {selectedActivity.count === 1 ? "contribution" : "contributions"}
             </p>
@@ -160,7 +170,7 @@ export default function GitHubCalendarWrapper({
                 setSelectedActivity(null);
                 setModalPosition(null);
               }}
-              className="mt-2 text-sm text-blue-400 hover:text-blue-300"
+              className="mt-2 text-sm text-[#88C0D0] hover:text-[#8FBCBB]"
             >
               Close
             </button>

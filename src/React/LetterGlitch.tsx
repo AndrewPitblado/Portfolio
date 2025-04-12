@@ -1,7 +1,7 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const LetterGlitch = ({
-  glitchColors = ["#1111FF", "#FFFFFF", "#222222"],
+  glitchColors = ["#81a1c1", "#eceff4", "#2e3440"],
   glitchSpeed = 33,
   centerVignette = false,
   outerVignette = false,
@@ -121,7 +121,7 @@ const LetterGlitch = ({
   const interpolateColor = (
     start: { r: number; g: number; b: number },
     end: { r: number; g: number; b: number },
-    factor: number
+    factor: number,
   ) => {
     const result = {
       r: Math.round(start.r + (end.r - start.r) * factor),
@@ -222,7 +222,7 @@ const LetterGlitch = ({
           letter.color = interpolateColor(
             startRgb,
             endRgb,
-            letter.colorProgress
+            letter.colorProgress,
           );
           needsRedraw = true;
         }
@@ -278,13 +278,13 @@ const LetterGlitch = ({
   }, [glitchSpeed, smooth]);
 
   return (
-    <div className="relative w-full h-full bg-[#101010] overflow-hidden">
-      <canvas ref={canvasRef} className="block w-full h-full" />
+    <div className="relative h-full w-full overflow-hidden bg-[#101010]">
+      <canvas ref={canvasRef} className="block h-full w-full" />
       {outerVignette && (
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle,_rgba(16,16,16,0)_60%,_rgba(16,16,16,1)_100%)]"></div>
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle,_rgba(16,16,16,0)_60%,_rgba(16,16,16,1)_100%)]"></div>
       )}
       {centerVignette && (
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle,_rgba(0,0,0,0.8)_0%,_rgba(0,0,0,0)_60%)]"></div>
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle,_rgba(0,0,0,0.8)_0%,_rgba(0,0,0,0)_60%)]"></div>
       )}
     </div>
   );

@@ -49,12 +49,13 @@ const { title } = Astro.props;
 </html>
 
 <style is:global>
+  @import "node_modules/nord/src/sass/template-css.scss";
   :root {
-    --background: #10152e;
-    --sec: #4865f7;
-    --white: #dfdfdf;
-    --white-icon: #f3f3f398;
-    --white-icon-tr: #f3f3f310;
+    --background: #2e3440; /* Nord polar night (darkest) */
+    --sec: #4c566a; /* Nord polar night (lightest) */
+    --white: #eceff4; /* Nord snow storm (brightest) */
+    --white-icon: #e5e9f0; /* Nord snow storm (medium) */
+    --white-icon-tr: #d8dee9; /* Nord snow storm (darkest) */
   }
 
   * {
