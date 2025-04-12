@@ -22,7 +22,8 @@ export default function ScrollLinked() {
           originX: 0,
           zIndex: 999,
 
-          backgroundColor: "#224499",
+          backgroundColor: "#4C566A", // Nord color for the scroll indicator
+          transition: "background-color 0.3s ease",
         }}
       />
     </>
