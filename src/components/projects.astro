@@ -15,6 +15,8 @@ interface Project {
   status: string;
   description?: string;
   stack?: string[];
+  year?: string;
+  category?: string;
 }
 
 const projects: Project[] = [
@@ -27,6 +29,8 @@ const projects: Project[] = [
     stack: ["Swift", "SwiftUI"],
     description:
       "An iOS app showing many different jokes of various categories to the user. Made with SwiftUI and Swift.",
+    year: "2023",
+    category: "iOS",
   },
   {
     title: "Logo-Game",
@@ -37,6 +41,8 @@ const projects: Project[] = [
     stack: ["React", "Tailwind CSS", "PostgreSQL", "Vercel"],
     description:
       "A simple game where the user tries to guess the company name based on the logos. Built with React, styled with Tailwind CSS, and delpoyed with vercel.",
+    year: "2024",
+    category: "Web",
   },
   {
     title: "Hangman",
@@ -47,6 +53,8 @@ const projects: Project[] = [
     stack: ["React", "Node.js", "Express", "Websockets"],
     description:
       "A simple hangman game where the user can play singleplayer or invite friends to play together in multiplayer mode!",
+    year: "2025",
+    category: "Web",
   },
   {
     title: "Western Engineering AutoPilot",
@@ -57,6 +65,8 @@ const projects: Project[] = [
     stack: ["React", "Vercel", "Azure"],
     description:
       "Offical website for the Western Engineering AutoPilot club. Showcasing the club's projects and events. Worked with multiple other developers on this project",
+    year: "2024",
+    category: "Web",
   },
 ];
 ---
@@ -71,106 +81,306 @@ const projects: Project[] = [
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
       {
-        projects.map((project) => (
-          <div class="group relative">
-            <div class="taos:scale-[1.2] taos:opacity-0 relative mb-4 delay-[300ms] duration-[600ms]">
-              <div class="hover::shadow-xl group relative mb-4 overflow-hidden rounded-2xl bg-[#1414149c] shadow-lg transition-shadow duration-300 duration-[400ms]">
-                <a
-                  href={project.preview}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="block"
+        projects.map((project, idx) => (
+          <div x-data="{ open: false }" class="group relative">
+            <div class="taos:scale-[1.2] taos:opacity-0 relative delay-[300ms] duration-[600ms]">
+              <div class="hover:shadow-[var(--sec)]/10 group relative overflow-hidden rounded-2xl bg-[#1414149c] shadow-lg transition-all duration-300 hover:shadow-xl">
+                <button
+                  @click="open = true"
+                  class="focus:ring-[var(--sec)]/50 block w-full text-left focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#23272E]"
+                  aria-label={`Open details for ${project.title}`}
                 >
-                  <div class="mb-4 overflow-hidden rounded-2xl bg-[#1414149c] shadow-lg transition-shadow duration-300 hover:shadow-xl">
+                  <div class="relative overflow-hidden">
                     <Image
                       src={project.image}
                       alt={project.title}
                       loading="lazy"
-                      class="h-48 w-full object-contain transition-transform duration-300 group-hover:scale-105 md:h-72"
+                      class={`w-full transition-transform duration-500 group-hover:scale-105 ${
+                        project.category === "iOS"
+                          ? "h-64 bg-[#1c1c1c] object-contain md:h-80"
+                          : "h-52 object-cover object-center md:h-80"
+                      }`}
                     />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80" />
+
+                    <div class="absolute bottom-0 left-0 w-full p-5">
+                      <div class="rounded-lg bg-black/50 p-3 backdrop-blur-sm">
+                        <h3 class="mb-1 text-xl font-semibold text-white md:text-2xl">
+                          {project.title}
+                        </h3>
+                        <p class="mb-3 line-clamp-2 text-sm text-white/90">
+                          {project.description}
+                        </p>
+
+                        <div class="flex flex-wrap gap-1.5">
+                          {project.stack &&
+                            project.stack
+                              .slice(0, 3)
+                              .map((tech) => (
+                                <span class="inline-flex items-center rounded-full bg-[#4C566A]/80 px-2 py-0.5 text-xs text-white/90">
+                                  {tech}
+                                </span>
+                              ))}
+                          {project.stack && project.stack.length > 3 && (
+                            <span class="inline-flex items-center rounded-full bg-[#4C566A]/80 px-2 py-0.5 text-xs text-white/90">
+                              +{project.stack.length - 3}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="absolute inset-0 flex items-center justify-center rounded-2xl bg-black/80 p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <p class="text-center text-white">{project.description}</p>
+
+                  <div class="absolute inset-0 flex items-center justify-center bg-black/80 p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <span class="bg-[var(--sec)]/20 rounded-full border border-[var(--sec)] px-4 py-2 text-sm font-medium text-[var(--sec)]">
+                      View Details
+                    </span>
                   </div>
-                </a>
+                </button>
               </div>
+            </div>
 
-              <div class="flex items-center px-3">
-                <div class="flex-grow">
-                  <h4 class="text-2xl font-semibold">{project.title}</h4>
-                  <span class="py-1 text-sm text-[var(--white-icon)]">
-                    {project.status}
-                  </span>
-                  <div class="mt-2 flex flex-wrap gap-2">
-                    {project.stack &&
-                      project.stack.map((tech, index) => {
-                        // Optional: Custom colors based on technology
-                        const techColors = {
-                          React: "bg-[#88C0D0]", // Nord frost
-                          Swift: "bg-[#5E81AC]", // Nord frost darker
-                          SwiftUI: "bg-[#81A1C1]", // Nord frost medium
-                          "Tailwind CSS": "bg-[#8FBCBB]", // Nord frost teal
-                          PostgreSQL: "bg-[#B48EAD]", // Nord aurora purple
-                          Vercel: "bg-[#4C566A]", // Nord polar night
-                          TypeScript: "bg-[#81A1C1]", // Nord frost medium blue
-                          "Node.js": "bg-[#5E81AC]", // Nord frost darker blue
-                          Express: "bg-[#BF616A]", // Nord red
-                          Websockets: "bg-[#D08770]", // Nord orange
-                          Azure: "bg-[#88C0D0]", // Nord frost
-                          // Add more technologies as needed
-                        };
-                        const bgColor = techColors[tech] || "bg-[#ff6600]"; // Default color
+            <div
+              x-show="open"
+              x-transition:enter="transition ease-out duration-300"
+              x-transition:enter-start="opacity-0 transform scale-95"
+              x-transition:enter-end="opacity-100 transform scale-100"
+              x-transition:leave="transition ease-in duration-200"
+              x-transition:leave-start="opacity-100 transform scale-100"
+              x-transition:leave-end="opacity-0 transform scale-95"
+              @click.away="open = false"
+              class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+              style="display: none;"
+            >
+              <div class="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-gradient-to-b from-[#2E3440] to-[#23272E] p-6 shadow-xl md:p-8">
+                <button
+                  @click="open = false"
+                  class="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-[#4C566A]/50 text-white transition-colors hover:bg-[#4C566A] hover:text-[var(--sec)]"
+                  aria-label="Close"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M18 6L6 18" />
+                    <path d="M6 6L18 18" />
+                  </svg>
+                </button>
 
-                        return (
-                          <span
-                            class={`inline-flex items-center rounded-full ${bgColor} taos:translate-y-[20px] taos:opacity-0 px-3 py-1 text-xs text-white transition-all duration-[300ms]`}
-                            style={`--taos-delay: ${Math.min(index * 50 + 300, 800)}ms`}
-                            data-taos-offset="10"
+                {/* Conditional layout based on project category */}
+                {project.category === "iOS" ? (
+                  /* Mobile app layout - side by side (row) */
+                  <div class="flex flex-col md:flex-row md:gap-6">
+                    <div class="mb-4 md:mb-0 md:w-2/5">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        class="mx-auto h-auto max-h-80 w-auto rounded-xl object-contain shadow-md"
+                      />
+                    </div>
+
+                    <div class="flex-1">
+                      <h3 class="mb-3 text-2xl font-bold text-[var(--sec)]">
+                        {project.title}
+                      </h3>
+                      <p class="mb-4 leading-relaxed text-white/90">
+                        {project.description}
+                      </p>
+
+                      {/* Rest of the content */}
+                      <div class="mb-4">
+                        <h4 class="mb-2 text-sm font-medium uppercase text-white/60">
+                          Technologies
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                          {project.stack &&
+                            project.stack.map((tech) => (
+                              <span class="inline-flex items-center rounded-full bg-[#4C566A] px-3 py-1 text-xs font-medium text-white shadow-sm">
+                                {tech}
+                              </span>
+                            ))}
+                        </div>
+                      </div>
+
+                      {/* Project metadata */}
+                      <div class="mt-auto flex pt-2">
+                        <span class="inline-flex items-center rounded-full bg-[#A3BE8C]/20 px-3 py-1 text-xs font-medium text-[#A3BE8C]">
+                          <span class="mr-1.5 h-2 w-2 rounded-full bg-[#A3BE8C]" />
+                          {project.status}
+                        </span>
+
+                        <span class="ml-4 inline-flex items-center rounded-full bg-[#D08770]/20 px-3 py-1 text-xs font-medium text-[#D08770]">
+                          <span class="mr-1.5 h-2 w-2 rounded-full bg-[#D08770]" />
+                          {project.year}
+                        </span>
+
+                        <span class="ml-4 inline-flex items-center rounded-full bg-[#88C0D0]/20 px-3 py-1 text-xs font-medium text-[#88C0D0]">
+                          <span class="mr-1.5 h-2 w-2 rounded-full bg-[#88C0D0]" />
+                          {project.category}
+                        </span>
+                      </div>
+
+                      {/* Links */}
+                      <div class="mt-6 flex gap-4">
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-2 rounded-lg bg-[#4C566A] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#5E81AC]"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            class="size-4"
                           >
-                            {tech}
-                          </span>
-                        );
-                      })}
+                            <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z" />
+                          </svg>
+                          GitHub
+                        </a>
+                        <a
+                          href={project.preview}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="bg-[var(--sec)]/20 hover:bg-[var(--sec)]/30 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-[var(--sec)] transition-colors"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="size-4"
+                          >
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
+                          </svg>
+                          Live Preview
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="ml-auto flex gap-2">
-                  <a
-                    target="_blank"
-                    href={project.link}
-                    aria-label="GitHub"
-                    class="border-1 flex size-14 items-center justify-center rounded-xl border border-[var(--white-icon-tr)] bg-[#1414149c] p-3 text-[var(--white-icon)] transition duration-300 ease-in-out hover:bg-[var(--white-icon-tr)] hover:text-white"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="size-7"
-                    >
-                      <path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L5.65685 6.34315L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z" />
-                    </svg>
-                  </a>
-                  <a
-                    target="_blank"
-                    href={project.preview}
-                    aria-label="Preview"
-                    class="border-1 flex size-14 items-center justify-center rounded-xl border border-[var(--white-icon-tr)] bg-[#1414149c] p-3 text-[var(--white-icon)] transition duration-300 ease-in-out hover:bg-[var(--white-icon-tr)] hover:text-white"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="size-7"
-                    >
-                      <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z" />
-                    </svg>
-                  </a>
-                </div>
+                ) : (
+                  /* Web app layout - column */
+                  <div class="flex flex-col">
+                    <div class="mb-6">
+                      <h3 class="mb-3 text-2xl font-bold text-[var(--sec)]">
+                        {project.title}
+                      </h3>
+
+                      <div class="mb-6 overflow-hidden rounded-xl shadow-lg">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          loading="lazy"
+                          class="h-auto w-full object-cover"
+                        />
+                      </div>
+
+                      <p class="mb-4 leading-relaxed text-white/90">
+                        {project.description}
+                      </p>
+
+                      <div class="mb-4">
+                        <h4 class="mb-2 text-sm font-medium uppercase text-white/60">
+                          Technologies
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                          {project.stack &&
+                            project.stack.map((tech) => (
+                              <span class="inline-flex items-center rounded-full bg-[#4C566A] px-3 py-1 text-xs font-medium text-white shadow-sm">
+                                {tech}
+                              </span>
+                            ))}
+                        </div>
+                      </div>
+
+                      <div class="mt-auto flex flex-wrap gap-y-2 pt-2">
+                        <span class="inline-flex items-center rounded-full bg-[#A3BE8C]/20 px-3 py-1 text-xs font-medium text-[#A3BE8C]">
+                          <span class="mr-1.5 h-2 w-2 rounded-full bg-[#A3BE8C]" />
+                          {project.status}
+                        </span>
+
+                        <span class="ml-4 inline-flex items-center rounded-full bg-[#D08770]/20 px-3 py-1 text-xs font-medium text-[#D08770]">
+                          <span class="mr-1.5 h-2 w-2 rounded-full bg-[#D08770]" />
+                          {project.year}
+                        </span>
+
+                        <span class="ml-4 inline-flex items-center rounded-full bg-[#88C0D0]/20 px-3 py-1 text-xs font-medium text-[#88C0D0]">
+                          <span class="mr-1.5 h-2 w-2 rounded-full bg-[#88C0D0]" />
+                          {project.category}
+                        </span>
+                      </div>
+
+                      <div class="mt-6 flex gap-4">
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-2 rounded-lg bg-[#4C566A] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#5E81AC]"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            class="size-4"
+                          >
+                            <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z" />
+                          </svg>
+                          GitHub
+                        </a>
+                        <a
+                          href={project.preview}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="bg-[var(--sec)]/20 hover:bg-[var(--sec)]/30 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-[var(--sec)] transition-colors"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="size-4"
+                          >
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
+                          </svg>
+                          Live Preview
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         ))
       }
     </div>
+
     <a
       target="_blank"
       href="https://github.com/AndrewPitblado?tab=repositories"
