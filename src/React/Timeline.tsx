@@ -3,7 +3,7 @@ import pkg from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 // Import icons (you can use react-icons for this)
 import { useState } from "react";
-import { FaApple, FaHtml5, FaLaptopCode, FaReact } from "react-icons/fa";
+import { FaApple, FaBriefcase, FaCode, FaHtml5, FaReact } from "react-icons/fa";
 
 const { VerticalTimeline, VerticalTimelineElement } = pkg;
 
@@ -31,13 +31,23 @@ const events: TimelineEvent[] = [
 
   {
     date: "Sep 2023",
-    title: "Humour Hub (ios app)",
+    title: "Humour Hub (iOS App)",
     description: "My first iOS App.",
     icon: <FaApple />,
     iconStyle: { background: "#5E81AC", color: "#ECEFF4" },
     tags: ["Swift", "SwiftUI", "TestFlight"],
     longDescription:
       "I developed an iOS app called Humour Hub, which is a platform for sharing jokes and funny content. This project was a significant step in my journey as it introduced me to mobile app development using Swift and SwiftUI.",
+  },
+  {
+    date: "Sep 2023 - Aug 2024",
+    title: "Ministry of Transportation of Ontario (Co-op)",
+    description: "Junior Software Developer.",
+    icon: <FaBriefcase />,
+    iconStyle: { background: "#5E81AC", color: "#ECEFF4" },
+    tags: ["Angular", ".NET", "SQL Server"],
+    longDescription:
+      "I worked as a Junior Software Developer at the Ministry of Transportation of Ontario, where I contributed to various projects using Angular and .NET. This experience allowed me to apply my skills in a professional environment and learn about software development best practices.",
   },
   {
     date: "Dec 2024",
@@ -64,7 +74,7 @@ const events: TimelineEvent[] = [
     date: "April 2025",
     title: "Updated Portfolio",
     description: "Launched this Astro + React portfolio site.",
-    icon: <FaLaptopCode />,
+    icon: <FaCode />,
     iconStyle: { background: "#5E81AC", color: "#ECEFF4" },
     tags: ["Astro", "React", "Tailwind CSS"],
     longDescription:
