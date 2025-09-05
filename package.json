@@ -39,6 +39,6 @@
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-organize-imports": "^4.2.0",
     "prettier-plugin-tailwindcss": "^0.6.14",
-    "sass-embedded": "^1.91.0"
+    "sass-embedded": "^1.92.0"
   }
 }
