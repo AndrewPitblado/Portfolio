@@ -15,7 +15,7 @@
     "@astrojs/tailwind": "^6.0.2",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "@vercel/speed-insights": "^1.1.0",
+    "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.15.3",
     "firebase": "^12.5.0",
     "github-calendar": "^2.3.4",
