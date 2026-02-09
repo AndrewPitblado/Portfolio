@@ -1,11 +1,12 @@
 import React from "react";
-import pkg from "react-vertical-timeline-component";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 // Import icons (you can use react-icons for this)
 import { useState } from "react";
 import { FaApple, FaBriefcase, FaCode, FaHtml5, FaReact } from "react-icons/fa";
-
-const { VerticalTimeline, VerticalTimelineElement } = pkg;
 
 interface TimelineEvent {
   date: string;
