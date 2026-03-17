@@ -15,7 +15,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vercel/speed-insights": "^2.0.0",
-    "astro": "^6.0.4",
+    "astro": "^6.0.5",
     "firebase": "^12.9.0",
     "github-calendar": "^2.3.4",
     "motion": "^12.36.0",
