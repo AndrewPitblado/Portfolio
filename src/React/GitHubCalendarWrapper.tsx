@@ -95,7 +95,11 @@ export default function GitHubCalendarWrapper({
   };
 
   return (
-    <div className="github-calendar-container relative" ref={containerRef}>
+    <div
+      className="github-calendar-container mt-6 flex justify-center"
+      style={{}}
+      ref={containerRef}
+    >
       <GitHubCalendar
         username={username}
         transformData={selectLastHalfYear}
@@ -133,7 +137,7 @@ export default function GitHubCalendarWrapper({
           >
             {/* Add a pointer triangle at the bottom of the modal */}
             <div
-              className="absolute h-4 w-4 rotate-45 transform"
+              className="absolute h-4 w-4 rotate-45"
               style={{
                 bottom: "-8px",
                 left: "50%",

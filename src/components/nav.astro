@@ -28,7 +28,7 @@ const navItems: NavItem[] = [
   <!-- Hamburger button that appears when scrolling -->
   <button
     id="menu-toggle"
-    class="fixed right-4 top-4 z-[110] hidden h-10 w-10 items-center justify-center rounded-full border border-[var(--white-icon-tr)] bg-[#1414149c] p-2 text-white backdrop-blur-xl transition-all duration-300 hover:bg-[var(--white-icon-tr)] md:right-6 md:top-6"
+    class="fixed top-4 right-4 z-[110] hidden h-10 w-10 items-center justify-center rounded-full border border-[var(--white-icon-tr)] bg-[#1414149c] p-2 text-white backdrop-blur-xl transition-all duration-300 hover:bg-[var(--white-icon-tr)] md:top-6 md:right-6"
     aria-label="Toggle menu"
   >
     <svg
@@ -42,7 +42,7 @@ const navItems: NavItem[] = [
   </button>
   <nav
     id="main-nav"
-    class="border-1 fixed bottom-0 left-0 right-0 z-[100] flex rounded-t-2xl border border-[var(--white-icon-tr)] bg-[#1414149c] backdrop-blur-xl transition-all md:bottom-auto md:top-0 md:mt-6 md:w-[33rem] md:justify-self-center md:rounded-full"
+    class="fixed right-0 bottom-0 left-0 z-[100] flex rounded-t-2xl border border-[var(--white-icon-tr)] bg-[#1414149c] backdrop-blur-xl transition-all md:top-0 md:right-auto md:bottom-auto md:left-1/2 md:mt-6 md:w-[33rem] md:-translate-x-1/2 md:rounded-full"
   >
     <div class="container mx-auto flex items-center justify-center p-3">
       <ul
@@ -69,18 +69,14 @@ const navItems: NavItem[] = [
   </nav>
 </div>
 
-<script>
-  // Declare the toggleMenu function on the window object
-  declare global {
-    interface Window {
-      toggleMenu: (show?: boolean) => void;
-    }
-  }
-
+<script is:inline>
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
-      const target = e.currentTarget as HTMLAnchorElement;
+      const target = e.currentTarget;
+      if (!(target instanceof HTMLAnchorElement)) {
+        return;
+      }
       const targetId = target.getAttribute("href")?.substring(1) || "";
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
@@ -89,7 +85,11 @@ const navItems: NavItem[] = [
         });
       }
       // Close menu when clicking a link (if it's the collapsed menu)
-      if (window.innerWidth >= 768 && window.scrollY > 100) {
+      if (
+        window.innerWidth >= 768 &&
+        window.scrollY > 100 &&
+        typeof window.toggleMenu === "function"
+      ) {
         window.toggleMenu(false);
       }
     });
@@ -101,6 +101,9 @@ const navItems: NavItem[] = [
     const observerOptions = { threshold: 0.3, rootMargin: "0px 0px -20% 0px" };
     const menuToggle = document.getElementById("menu-toggle");
     const mainNav = document.getElementById("main-nav");
+    if (!menuToggle || !mainNav) {
+      return;
+    }
     let isMenuOpen = true;
 
     // Function to toggle menu visibility
@@ -134,7 +137,6 @@ const navItems: NavItem[] = [
     });
 
     // Handle scroll events to show/hide navbar
-    let lastScrollTop = 0;
     window.addEventListener("scroll", () => {
       const isMobile = window.innerWidth < 768;
       const scrollThreshold = isMobile ? 50 : 100;
@@ -161,9 +163,6 @@ const navItems: NavItem[] = [
           window.toggleMenu(true);
         }
       }
-
-      // On mobile, behavior stays the same (fixed at bottom)
-      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     });
 
     // Initialize menu state based on screen position
@@ -205,7 +204,6 @@ const navItems: NavItem[] = [
       const activeLink = document.querySelector(`nav a[href="#${id}"]`);
       if (activeLink) {
         activeLink.classList.add("active");
-        console.log("Active link set to:", id);
       }
     }
     // Initially set home as active if we're at the top
@@ -216,13 +214,12 @@ const navItems: NavItem[] = [
       let hasIntersection = false;
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          hasIntersection = true;
           navLinks.forEach((link) => link.classList.remove("active"));
           const id = entry.target.getAttribute("id");
-          console.log("Current Section:", id);
           const activeLink = document.querySelector(`nav a[href="#${id}"]`);
           if (activeLink) {
             activeLink.classList.add("active");
-            console.log("Active Link set to:", activeLink.getAttribute("href"));
           }
         }
       });
@@ -301,6 +298,12 @@ const navItems: NavItem[] = [
   }
   /* Desktop navbar animations */
   @media (min-width: 768px) {
+    #menu-toggle {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
     #main-nav {
       transition:
         transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -308,9 +311,9 @@ const navItems: NavItem[] = [
     }
 
     #main-nav.nav-hidden {
-      transform: translateY(-100%);
-      opacity: 0;
-      pointer-events: none;
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
     }
 
     #main-nav.nav-visible {

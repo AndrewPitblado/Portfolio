@@ -46,7 +46,7 @@ import { motion } from "framer-motion";
               type="text"
               placeholder="Full Name"
               required
-              class="w-full rounded-md border border-slate-300 bg-gray-900 px-4 py-3 text-white outline-none ring-slate-100 placeholder:text-slate-400 focus:border-slate-600 focus:ring-4"
+              class="w-full rounded-md border border-slate-300 bg-gray-900 px-4 py-3 text-white ring-slate-100 outline-none placeholder:text-slate-400 focus:border-slate-600 focus:ring-4"
               name="name"
             />
             <div
@@ -63,7 +63,7 @@ import { motion } from "framer-motion";
               placeholder="Email Address"
               name="email"
               required
-              class="w-full rounded-md border border-slate-300 bg-gray-900 px-4 py-3 text-white outline-none ring-slate-100 placeholder:text-slate-400 focus:border-slate-600 focus:ring-4"
+              class="w-full rounded-md border border-slate-300 bg-gray-900 px-4 py-3 text-white ring-slate-100 outline-none placeholder:text-slate-400 focus:border-slate-600 focus:ring-4"
             />
             <div class="empty-feedback mt-1 text-sm text-red-400">
               Please provide your email address.
@@ -78,7 +78,7 @@ import { motion } from "framer-motion";
               name="message"
               required
               placeholder="Your Message"
-              class="h-36 w-full rounded-md border border-slate-300 bg-gray-900 px-4 py-3 text-white outline-none ring-slate-100 placeholder:text-slate-400 focus:border-slate-600 focus:ring-4"
+              class="h-36 w-full rounded-md border border-slate-300 bg-gray-900 px-4 py-3 text-white ring-slate-100 outline-none placeholder:text-slate-400 focus:border-slate-600 focus:ring-4"
             ></textarea>
 
             <div
@@ -88,10 +88,10 @@ import { motion } from "framer-motion";
             </div>
           </div>
 
-          <div class="w- flex items-center justify-center">
+          <div class="flex w-full items-center justify-center">
             <button
               type="submit"
-              class="hover:ring-3 bg-[var(--background] rounded-lg border border-transparent px-4 py-2 text-[var(--white)] ring-1 ring-slate-100 transition-transform duration-300 hover:scale-110 hover:border-slate-300 hover:bg-[var(--gray-icon-tr)]"
+              class="rounded-lg border border-transparent bg-[var(--background)] px-4 py-2 text-[var(--white)] ring-1 ring-slate-100 transition-transform duration-300 hover:scale-110 hover:border-slate-300 hover:bg-[var(--white-icon-tr)] hover:ring-3"
               >Send Message</button
             >
           </div>
@@ -108,36 +108,6 @@ import { motion } from "framer-motion";
     </div>
   </div>
 </section>
-
-<script type="module" is:inline>
-  const form = document.getElementById("contact-form");
-  const formMessage = document.getElementById("form-message");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
-      });
-      if (response.ok) {
-        form.reset();
-        form.style.display = "none";
-        formMessage.classList.remove("hidden");
-      } else {
-        const data = await response.json();
-        console.error("Error response:", data);
-        alert("There was a problem sending your message.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("There was a problem sending your message.");
-    }
-  });
-</script>
 
 <style>
   .invalid-feedback,
