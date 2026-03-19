@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+import taosPlugin from "taos/plugin";
+
 export default {
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
       keyframes: {
@@ -44,7 +45,7 @@ export default {
       },
     },
   },
-  plugins: [require("taos/plugin")],
+  plugins: [taosPlugin],
   safelist: [
     "!duration-[0ms]",
     "!delay-[0ms]",
@@ -52,7 +53,6 @@ export default {
   ],
   // Special configuration for Taos
   content: {
-    relative: true,
     transform: (content) => content.replace(/taos:/g, ""),
     files: ["./src/**/*.{html,js,jsx,ts,tsx,astro}"], // Include all relevant file types in all directories
   },
