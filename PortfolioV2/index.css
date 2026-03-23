@@ -345,6 +345,31 @@ section:hover {
   object-fit: contain;
 }
 
+/*Github calendar styling */
+
+/* Container styling */
+.github-calendar {
+  padding: 1rem;
+  border-radius: 12px;
+  width: 100%;
+  margin: 0 auto;
+}
+.github-calendar h2 {
+  margin-bottom: 1rem;
+}
+
+.github-calendar:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px
+    color-mix(in srgb, var(--accent) 40%, transparent 60%);
+  border-color: var(--accent);
+}
+
+.calendar-img {
+  width: 100%;
+  height: auto;
+  margin-top: 1rem;
+}
 /* 7. Projects Grid */
 .Projects h2 {
   margin-bottom: 0.5rem;
