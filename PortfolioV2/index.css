@@ -357,6 +357,12 @@ section:hover {
 .github-calendar h2 {
   margin-bottom: 1rem;
 }
+.github-calendar p {
+  margin-bottom: 1.5rem;
+  max-width: 100ch;
+  border-bottom: 3px solid var(--border);
+  padding-bottom: 0.5rem;
+}
 
 .github-calendar:hover {
   transform: translateY(-4px);
@@ -373,6 +379,12 @@ section:hover {
 /* 7. Projects Grid */
 .Projects h2 {
   margin-bottom: 0.5rem;
+}
+.Projects p {
+  margin-bottom: 1.5rem;
+  max-width: 100ch;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
 }
 
 .project-list {
