@@ -489,3 +489,19 @@ section:hover {
   text-decoration: none; /* overrides default underline */
   transform: translateY(-2px);
 }
+
+.Feedback h2 {
+  margin-bottom: 0.5rem;
+}
+.Feedback p {
+  max-width: 150ch;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+.Feedback p a {
+  color: var(--accent);
+  font-weight: 600;
+}
+.Feedback p a:hover {
+  text-decoration: underline;
+}
