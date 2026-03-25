@@ -647,6 +647,12 @@ section:hover {
   flex-grow: 1; /* Pushes the button links to the bottom if text lengths are uneven! */
 }
 
+.body-text {
+  max-width: 100ch;
+  max-height: 10.5em; /* Roughly 4 lines of text */
+  overflow-y: auto;
+  border-bottom: 5px solid var(--border);
+}
 .project-content h3 {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
@@ -662,6 +668,7 @@ section:hover {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-bottom: -0.5rem; /* Pulls up the buttons a bit to visually connect with the content above */
 }
 
 .project-links a {
