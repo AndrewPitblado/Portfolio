@@ -14,6 +14,8 @@
           src="assets/profile.jpeg"
           alt="Profile Picture"
           class="profile-pic"
+          decoding="async"
+          fetchpriority="high"
         />
         <div class="intro-text">
           <div class="title-row">
@@ -67,6 +69,8 @@
           src="assets/thinking.jpeg"
           alt="Thinking Picture"
           class="thinking-pic"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <div class="skills">
@@ -151,36 +155,53 @@
         <img
           src="assets/grad.jpeg"
           alt="Graduation Picture"
-          class="graduation-pic"
+          loading="lazy"
+          decoding="async"
         />
       </div>
     </section>
 
     <section id="journey" class="Journey">
-      <div class="journey-overview">
-        <h2>My Coding Journey</h2>
-        <p>
-          I have been coding for a few years now and it has been a great journey
-          so far. I have had the opportunity to work on some amazing projects
-          and have gained a lot of valuable experience. I have also had the
-          opportunity to work with some amazing people and have learned a lot
-          from them. I am excited to see where my coding journey takes me next
-          and I am always looking for new opportunities to learn and grow as a
-          developer. Below is a cool little visual respresentation of my coding
-          journey. It is not the most detailed but it gives a good overview of
-          the different technologies I have worked with and the different
-          projects I have worked on.
-        </p>
+      <div class="journey-container">
+        <div class="journey-text">
+          <h2>My Coding Journey</h2>
+          <p>
+            I have been coding for a few years now and it has been a great
+            journey so far. I have had the opportunity to work on some amazing
+            projects and have gained a lot of valuable experience. I have also
+            had the opportunity to work with some amazing people and have
+            learned a lot from them. I am excited to see where my coding journey
+            takes me next and I am always looking for new opportunities to learn
+            and grow as a developer. Below is a cool little visual
+            respresentation of my coding journey. It is not the most detailed
+            but it gives a good overview of the different technologies I have
+            worked with and the different projects I have worked on.
+          </p>
+        </div>
+        <img
+          src="assets/coding.jpeg"
+          alt="Coding Journey Picture"
+          loading="lazy"
+          decoding="async"
+          class="journey"
+        />
       </div>
 
       <div class="timeline-shell" aria-label="Coding journey timeline">
         <div class="timeline-track" id="timelineTrack">
           <article class="timeline-card">
             <div class="timeline-year">Sept 2020</div>
-            <h3>First Real Programming Course</h3>
+            <div class="timeline-header">
+              <h3>First Coding Course</h3>
+              <img
+                src="assets/course.svg"
+                alt="Course Icon"
+                class="header-icon"
+              />
+            </div>
             <p class="timeline-summary">
-              Learned the basics of programming in C++ in an intorductory
-              course.
+              Learned the basics of programming in C++ my 2nd year of Electrical
+              Engineering at the University of Windsor.
             </p>
             <p class="timeline-details">
               It was the fall of 2020, covid was just getting started, I was
@@ -195,54 +216,123 @@
           </article>
 
           <article class="timeline-card">
-            <div class="timeline-year">2020</div>
-            <h3>Switched Into Computer Science</h3>
+            <div class="timeline-year">June 2021</div>
+            <div class="timeline-header">
+              <h3>First Ever Website!</h3>
+              <img
+                src="assets/website.svg"
+                alt="Website Icon"
+                class="header-icon"
+              />
+            </div>
+
             <p class="timeline-summary">
-              Transitioned from Electrical Engineering and doubled down on
-              software fundamentals.
+              Completed at the end of my first year of Computer Science, this
+              was the first 'project' I ever built, using HTML, CSS, and a tiny
+              bit of Javascript
             </p>
             <p class="timeline-details">
-              Focused on algorithms, software design, and backend foundations.
-              Started collaborating on larger school/team projects.
+              I still remember watching so many Youtube videos on how to
+              actually purchase a domain, and how to host a website. It is kinda
+              ironic that I am now going back to just HTML, CSS, and JavaSctipt
+              for this portfolio haha!
             </p>
           </article>
 
           <article class="timeline-card">
-            <div class="timeline-year">2022</div>
-            <h3>Web Development Momentum</h3>
+            <div class="timeline-year">Sept 2023</div>
+            <div class="timeline-header">
+              <h3>Web First iOS App</h3>
+              <img
+                src="assets/appStore.svg"
+                alt="App Store Icon"
+                class="header-icon"
+              />
+            </div>
             <p class="timeline-summary">
-              Began shipping more front-end and full-stack projects with React,
-              Node.js, and SQL.
+              Finally bit the bullet and persuaded myself to learn swift and
+              build an iOS app: HumourHub. An app all about jokes 😁
             </p>
             <p class="timeline-details">
-              Built production-style apps, improved API design, and got much
-              better at balancing UX, performance, and maintainable code.
+              I had always had an internal itch to create an iOS app, it was
+              pretty much a bucket list item at this point. I had NO IDEA how to
+              use swift or swiftUI but there was this one youtube channel that I
+              watched religiously (Shout out Paul Hudson). I followed along with
+              his tutorials and not only built but published HumourHub on the
+              app store! Probably the most gradifying moment of my coding
+              jounrey so far!
             </p>
           </article>
 
           <article class="timeline-card">
-            <div class="timeline-year">2024</div>
-            <h3>Master's + Advanced Engineering</h3>
+            <div class="timeline-year">Sept 2023-Aug 2024</div>
+            <div class="timeline-header">
+              <h3>Ministry of Transportation Co-op</h3>
+              <img src="assets/work.svg" alt="Work Icon" class="header-icon" />
+            </div>
             <p class="timeline-summary">
-              Deepened software engineering knowledge while applying it to
-              practical projects and collaboration.
+              Landed my first ever big boy job at the Ministry of Transportation
+              as a Junior Analyst, where I got to work on two different projects
+              over the course of the year
             </p>
             <p class="timeline-details">
-              Worked across cloud, backend, and system design topics while still
-              building polished user-facing apps.
+              This was a very last minute co-op placement haha. So I was
+              actually at Canadas Wonderland with my friends when I got a call
+              for an interview. This was in late August and I had already
+              enrolled in my courses for the fall semester at school. I had the
+              interview on the of August and my first day was Septemeber 6th.
+              talk about last minute! In the end everything worked out and I had
+              an amazing time there an got first hand experience on what it was
+              like working in a production environment with a team.
             </p>
           </article>
 
           <article class="timeline-card">
-            <div class="timeline-year">2025+</div>
-            <h3>Shipping Portfolio Projects</h3>
+            <div class="timeline-year">Dec 2024</div>
+            <div class="timeline-header">
+              <h3>LogoQuiz Web App</h3>
+              <img
+                src="assets/quiz.svg"
+                alt="LogoQuiz Icon"
+                class="header-icon"
+              />
+            </div>
             <p class="timeline-summary">
-              Focused on projects like BookTrack and Dad-A-Base while refining
-              product thinking and engineering quality.
+              I was thinking of a fun game idea to build and came across a
+              youtube video of people trying to guess company logos, and sparks
+              began to fly!
             </p>
             <p class="timeline-details">
-              Current focus is on delivering complete, performant experiences
-              across web and mobile with solid architecture under the hood.
+              This was the first project I built using React and Node.js, and
+              also the first time I had to creat/connect a database in order to
+              store the logos and the user data. I did not know how to host the
+              database along with the web app at first but I found Vercel was a
+              very easy and affordable solution for hosting both the frontend
+              and backend.
+            </p>
+          </article>
+
+          <article class="timeline-card">
+            <div class="timeline-year">Apr 2025</div>
+            <div class="timeline-header">
+              <h3>Hangman Web App</h3>
+              <img
+                src="assets/space.svg"
+                alt="Hangman Icon"
+                class="header-icon"
+              />
+            </div>
+            <p class="timeline-summary">
+              What initially started as a school project for my integrated
+              systems course, quickly turned into a passion project that I spent
+              way too much time on 😅!
+            </p>
+            <p class="timeline-details">
+              The big theme of this project was real time commuication between a
+              client and a server via webhooks. I had never worked with webhooks
+              before and it was a really cool experience to learn about them
+              through a simple game of hangman. It was super fun being able to
+              play with my brother who lives accross the country!
             </p>
           </article>
         </div>
@@ -264,6 +354,8 @@
             src="assets/Booktrack.png"
             alt="Project 1 Screenshot"
             class="project-img"
+            loading="lazy"
+            decoding="async"
           />
           <div class="project-content">
             <div class="project-type">Web App</div>
@@ -297,6 +389,8 @@
             src="assets/hangman.png"
             alt="Project 2 Screenshot"
             class="project-img"
+            loading="lazy"
+            decoding="async"
           />
           <div class="project-content">
             <div class="project-type">Web App</div>
@@ -330,6 +424,8 @@
             src="assets/logogame.png"
             alt="Project 3 Screenshot"
             class="project-img"
+            loading="lazy"
+            decoding="async"
           />
           <div class="project-content">
             <div class="project-type">Web App</div>
@@ -363,6 +459,8 @@
             src="assets/DadABase.png"
             alt="Project 4 Screenshot"
             class="project-img"
+            loading="lazy"
+            decoding="async"
           />
           <div class="project-content">
             <div class="project-type">iOS App</div>
@@ -404,6 +502,8 @@
             src="https://ghchart.rshah.org/0066cc/andrewpitblado"
             alt="Andrew's GitHub Contributions Calendar"
             class="calendar-img"
+            loading="lazy"
+            decoding="async"
           />
         </picture>
       </div>
@@ -416,6 +516,6 @@
         <a href="mailto:andrewpitblado@gmail.com">andrewpitblado@gmail.com</a>
       </p>
     </section>
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
   </body>
 </html>
